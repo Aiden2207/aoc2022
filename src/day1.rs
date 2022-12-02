@@ -10,7 +10,7 @@ pub fn part1(s: &str) -> u32 {
         .step_by(2)
         .map(|(_, g)| g.flatten().sum::<u32>())
         .max()
-        .unwrap() as _
+        .unwrap()
 }
 
 pub fn part2(s: &str) -> u32 {
