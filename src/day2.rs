@@ -33,16 +33,10 @@ pub fn part2(s: &str) -> u32 {
             let mut iter = s.chars();
             let left = iter.next().unwrap();
             let right = iter.last().unwrap();
-            let opp = match left {
-                'A' => 0,
-                'B' => 1,
-                'C' => 2,
-                _ => unreachable!(),
-            };
-            let me = match (opp, right) {
-                (0, 'X') | (2, 'Y') | (1, 'Z') => 3,
-                (0, 'Z') | (1, 'Y') | (2, 'X') => 2,
-                (0, 'Y') | (1, 'X') | (2, 'Z') => 1,
+            let me = match (left, right) {
+                ('A', 'X') | ('C', 'Y') | ('B', 'Z') => 3,
+                ('A', 'Z') | ('B', 'Y') | ('C', 'X') => 2,
+                ('A', 'Y') | ('B', 'X') | ('C', 'Z') => 1,
                 _ => unreachable!(),
             };
             let res = match right {
