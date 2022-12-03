@@ -8,9 +8,9 @@ pub fn part1(input: &str) -> u32 {
             let left = left.chars().collect::<HashSet<_>>();
             let right = right.chars().collect::<HashSet<_>>();
             let misplaced = left.intersection(&right).next().unwrap();
-            match misplaced {
-                &c @ 'a'..='z' => c as u32 - 'a' as u32 + 1,
-                &c @ 'A'..='Z' => c as u32 - 'A' as u32 + 1 + 26,
+            match *misplaced {
+                c @ 'a'..='z' => c as u32 - 'a' as u32 + 1,
+                c @ 'A'..='Z' => c as u32 - 'A' as u32 + 1 + 26,
                 _ => unreachable!(),
             }
         })
@@ -26,9 +26,9 @@ pub fn part2(input: &str) -> u32 {
             let b = b.chars().collect::<HashSet<_>>();
             let c = c.chars().collect::<HashSet<_>>();
             let misplaced = &(&a & &b) & &c;
-            match misplaced.iter().next().unwrap() {
-                &c @ 'a'..='z' => c as u32 - 'a' as u32 + 1,
-                &c @ 'A'..='Z' => c as u32 - 'A' as u32 + 1 + 26,
+            match *misplaced.iter().next().unwrap() {
+                c @ 'a'..='z' => c as u32 - 'a' as u32 + 1,
+                c @ 'A'..='Z' => c as u32 - 'A' as u32 + 1 + 26,
                 _ => unreachable!(),
             }
         })
