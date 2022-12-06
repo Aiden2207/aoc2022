@@ -20,7 +20,7 @@ pub fn part2(input: &str) -> usize {
         .as_bytes()
         .windows(14)
         .enumerate()
-        .find(|(_, arr)| arr.into_iter().collect::<HashSet<_>>().len() == 14)
+        .find(|(_, arr)| arr.iter().collect::<HashSet<_>>().len() == 14)
         .unwrap()
         .0
         + 13
