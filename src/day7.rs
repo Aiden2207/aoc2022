@@ -1,31 +1,20 @@
-use std::collections::HashMap;
-
 use itertools::Itertools;
 use petgraph::{graph::NodeIndex, visit::EdgeRef, Direction, Graph};
 type Dir<'a> = Graph<(&'a str, u32), ()>;
 pub fn part1(input: &str) -> u32 {
     let (graph, head) = build_dir(input);
-    let mut cache = HashMap::new();
-    sum(&graph, &mut cache, head, "/".to_owned());
-    cache
-        .into_iter()
-        .filter(|(_, n)| n <= &100000)
-        .map(|(_, n)| n)
-        .sum()
+    let mut cache = Vec::new();
+    sum(&graph, &mut cache, head);
+    cache.into_iter().filter(|n| n <= &100000).map(|n| n).sum()
 }
 
 pub fn part2(input: &str) -> u32 {
     let (graph, head) = build_dir(input);
-    let mut cache = HashMap::new();
-    let total = sum(&graph, &mut cache, head, "/".to_owned());
+    let mut cache = Vec::new();
+    let total = sum(&graph, &mut cache, head);
     let empty = 70_000_000 - total;
     let target = 30_000_000 - empty;
-    cache
-        .into_iter()
-        .filter(|(_, n)| n >= &target)
-        .map(|(_, n)| n)
-        .min()
-        .unwrap()
+    cache.into_iter().filter(|n| n >= &target).min().unwrap()
 }
 
 fn build_dir(input: &str) -> (Dir<'_>, NodeIndex) {
@@ -66,7 +55,7 @@ fn build_dir(input: &str) -> (Dir<'_>, NodeIndex) {
     (graph, head)
 }
 
-fn sum(map: &Dir<'_>, cache: &mut HashMap<String, u32>, idx: NodeIndex, path: String) -> u32 {
+fn sum(map: &Dir<'_>, cache: &mut Vec<u32>, idx: NodeIndex) -> u32 {
     let node = map.node_weight(idx).unwrap();
     if node.1 > 0 {
         return node.1;
@@ -74,16 +63,9 @@ fn sum(map: &Dir<'_>, cache: &mut HashMap<String, u32>, idx: NodeIndex, path: St
     let edges = map.edges(idx);
     edges
         .map(|e| {
-            let weight = map.node_weight(e.target()).unwrap();
-            if let Some(s) = cache.get(&(path.clone() + weight.0)) {
-                *s
-            } else {
-                let s = sum(map, cache, e.target(), path.clone() + weight.0);
-                if weight.1 == 0 {
-                    cache.insert(path.clone() + weight.0, s);
-                }
-                s
-            }
+            let s = sum(map, cache, e.target());
+            cache.push(s);
+            s
         })
         .sum()
 }
