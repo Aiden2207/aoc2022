@@ -5,7 +5,7 @@ pub fn part1(input: &str) -> u32 {
     let (graph, head) = build_dir(input);
     let mut cache = Vec::new();
     sum(&graph, &mut cache, head);
-    cache.into_iter().filter(|n| n <= &100000).map(|n| n).sum()
+    cache.into_iter().filter(|n| n <= &100000).sum()
 }
 
 pub fn part2(input: &str) -> u32 {
