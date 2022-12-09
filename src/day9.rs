@@ -72,22 +72,13 @@ pub fn part2(input: &str) -> usize {
     for line in input.lines() {
         let (dir, num) = line.split_whitespace().next_tuple().unwrap();
         let num = num.parse::<i32>().unwrap();
-        let change;
-        match dir {
-            "U" => {
-                change = (0, 1);
-            }
-            "D" => {
-                change = (0, -1);
-            }
-            "L" => {
-                change = (-1, 0);
-            }
-            "R" => {
-                change = (1, 0);
-            }
+        let change = match dir {
+            "U" => (0, 1),
+            "D" => (0, -1),
+            "L" => (-1, 0),
+            "R" => (1, 0),
             _ => panic!("unknown direction"),
-        }
+        };
         for _ in 0..num {
             rope[0].0 += change.0;
             rope[0].1 += change.1;

@@ -1,7 +1,7 @@
 use aoc2022::day9::*;
 use aoc2022::read_data;
 fn main() {
-    let test = "R 5
+    let _test = "R 5
 U 8
 L 8
 D 3
