@@ -1,6 +1,14 @@
-use aoc2022::day8::part2;
+use aoc2022::day9::*;
 use aoc2022::read_data;
 fn main() {
-    let s = read_data("day8.txt");
-    println!("day6: {:?}", part2(&s));
+    let test = "R 5
+U 8
+L 8
+D 3
+R 17
+D 10
+L 25
+U 20";
+    let s = read_data("day9.txt");
+    println!("day9: {:?}", part2(&s));
 }
