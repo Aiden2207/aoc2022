@@ -17,7 +17,7 @@ pub fn part1(input: &str) -> i32 {
             Some(n) => {
                 if list.contains(&cycle) {
                     (cycle + 2, reg + n, sum + reg * cycle)
-                } else if list.contains(&(cycle + 1_)) {
+                } else if list.contains(&(cycle + 1)) {
                     dbg!(cycle + 1, reg);
                     (cycle + 2, reg + n, sum + reg * (cycle + 1))
                 } else {
@@ -52,7 +52,7 @@ pub fn part2(input: &str) -> String {
     let mut mid_add = false;
     let mut reg = 1;
     let mut row = 0;
-    for cycle in 1usize..=240 {
+    for (cycle, item) in grid.iter_mut().enumerate().take(240 + 1).skip(1usize) {
         match (op, mid_add) {
             (Some(_), false) => {
                 mid_add = true;
@@ -67,7 +67,7 @@ pub fn part2(input: &str) -> String {
             }
         }
         if (cycle - 1..=cycle + 1).contains(&((reg + row * 40 + 1) as usize)) {
-            grid[cycle] = b'#';
+            *item = b'#';
         }
         if cycle % 40 == 0 {
             row += 1;
