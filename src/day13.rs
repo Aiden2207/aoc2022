@@ -60,7 +60,7 @@ fn parse_packets(input: &str) -> Vec<(Packet, Packet)> {
     input
         .split("\r\n\r\n")
         .map(|s| {
-            let mut it = s.split("\n");
+            let mut it = s.lines();
             let p1 = it.next().unwrap();
             let p2 = it.next().unwrap();
             (parse_packet(p1).unwrap().1, parse_packet(p2).unwrap().1)
