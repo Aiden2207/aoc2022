@@ -1,5 +1,5 @@
 # Aoc 2022
-My solution to the advent of code challenges. It'll probably all be in rust.
+My solution to the advent of code challenges. It'll probably all be in rust. Some solutions might need tweaking to get working outside of windows, as line endings aren't always handled portably.
 
 ## License
 
