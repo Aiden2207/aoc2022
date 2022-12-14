@@ -129,7 +129,7 @@ fn parse_paths(input: &str) -> Vec<Vec<(usize, usize)>> {
         .map(|line| {
             line.split("->")
                 .map(|s| {
-                    let mut it = s.split(",");
+                    let mut it = s.split(',');
                     let x = it.next().unwrap().trim().parse().unwrap();
                     let y = it.next().unwrap().trim().parse().unwrap();
                     (x, y)
