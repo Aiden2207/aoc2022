@@ -17,6 +17,7 @@ Sensor at x=14, y=3: closest beacon is at x=15, y=3
 Sensor at x=20, y=1: closest beacon is at x=15, y=3";
     let s = read_data("day15.txt");
     println!("day15:\n{}", part1(&s, 2_000_000));
-    println!("day15:\n{}", part1(&_test, 10));
-    println!("day15:\n{}", part2(&_test, 20));
+    println!("day15:\n{}", part1(_test, 10));
+    println!("day15:\n{}", part2(_test, 20));
+    println!("day15:\n{}", part2(&s, 4_000_000));
 }
